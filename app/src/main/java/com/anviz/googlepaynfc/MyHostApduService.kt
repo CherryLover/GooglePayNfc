@@ -4,6 +4,7 @@ import android.content.Intent
 import android.nfc.cardemulation.HostApduService
 import android.os.Bundle
 import android.util.Log
+import org.greenrobot.eventbus.EventBus
 import java.util.*
 
 /**
@@ -75,16 +76,20 @@ class MyHostApduService : HostApduService() {
 
   override fun processCommandApdu(commandApdu: ByteArray, extras: Bundle?): ByteArray {
     val command = byteArrayToHexString(commandApdu)
-    Log.d(TAG, "Received APDU: $command")
+    log("接收内容: $command")
     return when (command) {
       FIRST_REQUEST -> {
         val accountNumber = "1234567890"
-        log("send account number: $accountNumber")
-        concatArrays(hexStringToByteArray(accountNumber), SELECT_OK_SW)
+        log("发送 number: $accountNumber")
+        val concatArrays = concatArrays(hexStringToByteArray(accountNumber), SELECT_OK_SW)
+        log("实际发送内容: ${byteArrayToHexString(concatArrays)}")
+        concatArrays
       }
       "0011AB" -> {
-        log("send 0011AB")
-        concatArrays(hexStringToByteArray("0011AB"), SELECT_OK_SW)
+        log("发送 0011AB")
+        val concatArrays = concatArrays(hexStringToByteArray("0011AB"), SELECT_OK_SW)
+        log("实际发送内容: ${byteArrayToHexString(concatArrays)}")
+        concatArrays
       }
       else -> {
         UNKNOWN_CMD_SW
@@ -93,20 +98,33 @@ class MyHostApduService : HostApduService() {
   }
 
   override fun onDeactivated(reason: Int) {
-    Log.d(TAG, "onDeactivated $reason")
+    val text = if (reason == DEACTIVATION_LINK_LOSS) {
+      "NFC 链路丢失造成的断开连接"
+    } else if (reason == DEACTIVATION_DESELECTED) {
+      "AID 不同造成的连接断开"
+    } else {
+      "Deactivated:  $reason"
+    }
+    loge("模拟卡断开连接：$text")
   }
 
-  override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-    Log.d(TAG, "onStartCommand")
-    return super.onStartCommand(intent, flags, startId)
-  }
+//  override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+//    Log.d(TAG, "onStartCommand")
+//    return super.onStartCommand(intent, flags, startId)
+//  }
 
   override fun onCreate() {
     super.onCreate()
-    Log.d(TAG, "onCreate")
+    log("模拟卡服务启动")
   }
 
   private fun log(msg: String) {
-    Log.e(TAG, msg)
+    Log.d(TAG, msg);
+    EventBus.getDefault().post(Pair(1, msg))
+  }
+
+  private fun loge(msg: String) {
+    Log.e(TAG, msg);
+    EventBus.getDefault().post(Pair(0, msg))
   }
 }
