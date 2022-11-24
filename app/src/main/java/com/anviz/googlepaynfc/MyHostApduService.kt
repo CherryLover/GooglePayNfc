@@ -1,11 +1,9 @@
 package com.anviz.googlepaynfc
 
-import android.content.Intent
 import android.nfc.cardemulation.HostApduService
 import android.os.Bundle
 import android.util.Log
 import org.greenrobot.eventbus.EventBus
-import java.util.*
 
 /**
  * @description
@@ -15,16 +13,13 @@ class MyHostApduService : HostApduService() {
 
   companion object {
     private const val TAG = "MyHostApduService"
-    private const val SAMPLE_LOYALTY_CARD_AID = "F123422222"
+    private const val SAMPLE_LOYALTY_CARD_AID = "F123422221"
 
     // ISO-DEP command HEADER for selecting an AID.
     // Format: [Class | Instruction | Parameter 1 | Parameter 2]
 //    private const val SELECT_APDU_HEADER = "00A40400"
-
-    // "OK"
-    private val SELECT_OK_SW: ByteArray = hexStringToByteArray("9000")
     // "UNKNOWN"
-    private val UNKNOWN_CMD_SW: ByteArray = hexStringToByteArray("0000")
+    private val UNKNOWN_CMD_SW: ByteArray = hexStringToByteArray("1111")
 
     private val FIRST_REQUEST = "00A40400" + String.format("%02X", SAMPLE_LOYALTY_CARD_AID.length / 2) + SAMPLE_LOYALTY_CARD_AID
 
@@ -58,20 +53,6 @@ class MyHostApduService : HostApduService() {
       }
       return data
     }
-
-    private fun concatArrays(first: ByteArray, vararg rest: ByteArray): ByteArray {
-      var totalLength = first.size
-      for (array in rest) {
-        totalLength += array.size
-      }
-      val result = Arrays.copyOf(first, totalLength)
-      var offset = first.size
-      for (array in rest) {
-        System.arraycopy(array, 0, result, offset, array.size)
-        offset += array.size
-      }
-      return result
-    }
   }
 
   override fun processCommandApdu(commandApdu: ByteArray, extras: Bundle?): ByteArray {
@@ -79,19 +60,23 @@ class MyHostApduService : HostApduService() {
     log("接收内容: $command")
     return when (command) {
       FIRST_REQUEST -> {
-        val accountNumber = "1234567890"
-        log("发送 number: $accountNumber")
-        val concatArrays = concatArrays(hexStringToByteArray(accountNumber), SELECT_OK_SW)
-        log("实际发送内容: ${byteArrayToHexString(concatArrays)}")
-        concatArrays
+        val accountNumber = "FABC"
+        log("发送 $accountNumber")
+        hexStringToByteArray(accountNumber)
       }
-      "0011AB" -> {
-        log("发送 0011AB")
-        val concatArrays = concatArrays(hexStringToByteArray("0011AB"), SELECT_OK_SW)
-        log("实际发送内容: ${byteArrayToHexString(concatArrays)}")
-        concatArrays
+
+      "AAAA" -> {
+        log("发送 A1B2")
+        hexStringToByteArray("A1B2")
       }
+
+      "BBBB" -> {
+        log("发送 B1B2")
+        hexStringToByteArray("B1B2")
+      }
+
       else -> {
+        log("收到未知指令: $command 返回 1111")
         UNKNOWN_CMD_SW
       }
     }

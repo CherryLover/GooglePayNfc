@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/servicedesc"
-    android:apduServiceBanner="@drawable/payments"
-    android:requireDeviceUnlock="false">
-<!--    <aid-group android:description="@string/nfc_description" android:category="payment">-->
-<!--        <aid-filter android:name="F123422222" />-->
-<!--    </aid-group>-->
+    android:requireDeviceUnlock="false"
+    android:apduServiceBanner="@drawable/payments">
     <aid-group
-        android:category="other"
+        android:category="@string/nfc_emulator_category_payment"
         android:description="@string/aiddescription">
-        <aid-filter android:name="F123422222" />
+        <aid-filter android:name="F123422221" />
     </aid-group>
 </host-apdu-service>

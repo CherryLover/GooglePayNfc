@@ -10,4 +10,9 @@
     <string name="servicedesc">AnvizNFC</string>
     <string name="aiddescription">aiddescription</string>
     <string name="nfc_description">nfc_description</string>
+
+    <string name="nfc_emulator_category_payment">payment</string>
+    <string name="nfc_emulator_category_other">other</string>
+    <string name="nfc_emulator_aid">F123422221</string>
+
 </resources>

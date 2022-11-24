@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".CheckoutActivity">
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="基于主机的卡模拟"
@@ -20,15 +19,38 @@
     <Button
         android:id="@+id/btnClearLog"
         android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="清除日志" />
 
+    <Button
+        android:id="@+id/btnSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="打开设置"
+        app:layout_constraintStart_toEndOf="@id/btnClearLog"
+        app:layout_constraintTop_toTopOf="@id/btnClearLog" />
+
+    <CheckBox
+        android:id="@+id/cbDefault"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="默认支付"
+        app:layout_constraintStart_toEndOf="@id/btnSetting"
+        app:layout_constraintTop_toTopOf="@+id/btnClearLog" />
+
+
     <TextView
+        android:text="模拟卡 AID: F123422221\n"
         android:id="@+id/tvLog"
-        android:text="模拟卡 AID: F123422222\n"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnClearLog"
         android:layout_margin="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
