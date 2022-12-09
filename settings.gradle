@@ -3,6 +3,20 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven {
+            url 'https://packages.aliyun.com/maven/repository/2258025-release-FBRcMT/'
+            credentials {
+                username '5fbcbcfde24b94a4eccaf107'
+                password 'V6]-GlGgHstt'
+            }
+        }
+        maven {
+            url 'https://packages.aliyun.com/maven/repository/2258025-snapshot-eDzHsn/'
+            credentials {
+                username '5fbcbcfde24b94a4eccaf107'
+                password 'V6]-GlGgHstt'
+            }
+        }
     }
 }
 dependencyResolutionManagement {
@@ -10,6 +24,20 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url 'https://packages.aliyun.com/maven/repository/2258025-release-FBRcMT/'
+            credentials {
+                username '5fbcbcfde24b94a4eccaf107'
+                password 'V6]-GlGgHstt'
+            }
+        }
+        maven {
+            url 'https://packages.aliyun.com/maven/repository/2258025-snapshot-eDzHsn/'
+            credentials {
+                username '5fbcbcfde24b94a4eccaf107'
+                password 'V6]-GlGgHstt'
+            }
+        }
     }
 }
 ext.kotlin_version = '1.6.0'

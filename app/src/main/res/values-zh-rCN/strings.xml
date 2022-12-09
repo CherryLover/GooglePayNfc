@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GooglePayNfc</string>
+    <string name="title_activity_checkout">Nfc 卡模拟</string>
+    <string name="checkout_item_description">描述</string>
+    <string name="googlepay_status_unavailable" translatable="false">对不起，Google Pay 不支持这个手机</string>
+    <string name="payments_show_name" translatable="false">成功收到支付信息 %s</string>
+    <string name="servicedesc">AnivzNFC</string>
+    <string name="aiddescription">Aid 描述</string>
+    <string name="nfc_description">NFC 描述</string>
+    <string name="notice">提示</string>
+    <string name="ask_nfc_open">NFC 未打开，是否打开？</string>
+    <string name="error">错误</string>
+    <string name="no_nfc_support_hint">这个设备不能支持 NFC</string>
+    <string name="ok">好</string>
+    <string name="cancel">取消</string>
+    <string name="not_default_payment_ask">当前应用不是默认付款应用，是否设置</string>
+    <string name="googlepay_button_content_description">Google Pay</string>
+    <string name="buy_with_googlepay_button_content_description">用 Google Pay 购买</string>
+    <string name="nfc_default_other_ask">当前应用不是默认的NFC应用，是否设置为默认应用？</string>
+</resources>

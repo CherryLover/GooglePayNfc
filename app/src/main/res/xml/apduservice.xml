@@ -3,8 +3,14 @@
     android:description="@string/servicedesc"
     android:requireDeviceUnlock="false"
     android:apduServiceBanner="@drawable/payments">
+<!--    <aid-group-->
+<!--        android:category="@string/nfc_emulator_category_payment"-->
+<!--        android:description="@string/aiddescription">-->
+<!--        <aid-filter android:name="F123422221" />-->
+<!--    </aid-group>-->
+
     <aid-group
-        android:category="@string/nfc_emulator_category_payment"
+        android:category="@string/nfc_emulator_category_other"
         android:description="@string/aiddescription">
         <aid-filter android:name="F123422221" />
     </aid-group>

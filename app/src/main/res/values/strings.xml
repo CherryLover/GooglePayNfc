@@ -4,15 +4,23 @@
     <!-- Checkout activity -->
     <string name="title_activity_checkout">NfcEmulation</string>
     <string name="checkout_item_description">Description</string>
-    <string name="googlepay_status_unavailable" translatable="false">Unfortunately, Google Pay is not available on this phone.</string>
-    <string name="payments_show_name" translatable="false">Successfully received payment data for %s!</string>
+    <string name="googlepay_status_unavailable">Unfortunately, Google Pay is not available on this phone.</string>
+    <string name="payments_show_name">Successfully received payment data for %s!</string>
 
     <string name="servicedesc">AnvizNFC</string>
     <string name="aiddescription">aiddescription</string>
     <string name="nfc_description">nfc_description</string>
 
-    <string name="nfc_emulator_category_payment">payment</string>
-    <string name="nfc_emulator_category_other">other</string>
-    <string name="nfc_emulator_aid">F123422221</string>
+    <string name="nfc_emulator_category_payment" translatable="false">payment</string>
+    <string name="nfc_emulator_category_other" translatable="false">other</string>
+    <string name="nfc_emulator_aid" translatable="false">F123422221</string>
+    <string name="notice">Notice</string>
+    <string name="ask_nfc_open">NFC is not enabled, Now open It?</string>
+    <string name="error">Error</string>
+    <string name="no_nfc_support_hint">This device does not support NFC</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="not_default_payment_ask">This app is not default payment, Now set It?</string>
+    <string name="nfc_default_other_ask">当前应用不是默认的NFC应用，是否设置为默认应用？</string>
 
 </resources>
