@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GooglePayNfc</string>
+    <string name="app_name">AvzNFC</string>
     <string name="title_activity_checkout">Nfc 卡模拟</string>
     <string name="checkout_item_description">描述</string>
     <string name="googlepay_status_unavailable" translatable="false">对不起，Google Pay 不支持这个手机</string>

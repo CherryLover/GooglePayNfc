@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GooglePayNfc</string>
+    <string name="app_name">AvzNFC</string>
 
     <!-- Checkout activity -->
     <string name="title_activity_checkout">NfcEmulation</string>
