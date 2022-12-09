@@ -18,4 +18,5 @@
     <string name="googlepay_button_content_description">Google Pay</string>
     <string name="buy_with_googlepay_button_content_description">用 Google Pay 购买</string>
     <string name="nfc_default_other_ask">当前应用不是默认的NFC应用，是否设置为默认应用？</string>
+    <string name="nfc_utec_installed">Utec 不能与当前应用同时存在，否则会在刷卡时提示选择应用，去卸载？</string>
 </resources>

@@ -22,5 +22,6 @@
     <string name="cancel">Cancel</string>
     <string name="not_default_payment_ask">This app is not default payment, Now set It?</string>
     <string name="nfc_default_other_ask">当前应用不是默认的NFC应用，是否设置为默认应用？</string>
+    <string name="nfc_utec_installed">Utec 不能与当前应用同时存在，否则会在刷卡时提示选择应用，去卸载？</string>
 
 </resources>

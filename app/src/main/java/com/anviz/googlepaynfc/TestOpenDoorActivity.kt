@@ -1,17 +1,22 @@
 package com.anviz.googlepaynfc
 
+import android.annotation.SuppressLint
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.anviz.googlepaynfc.databinding.ActivityTestOpenDoorBinding
 import com.anviz.logger.Logger
 import com.google.android.material.snackbar.Snackbar
+
 
 class TestOpenDoorActivity : AppCompatActivity() {
 
   companion object {
     private const val TAG = "TestOpenDoorActivity"
+    const val UTEC = "com.utec.utec"
   }
 
   private val binding by lazy { ActivityTestOpenDoorBinding.inflate(layoutInflater) }
@@ -98,6 +103,35 @@ class TestOpenDoorActivity : AppCompatActivity() {
         }
         .show()
     }
+
+    if (checkAppInstalled(this, UTEC)) {
+      AlertDialog.Builder(this)
+        .setTitle(R.string.notice)
+        .setMessage(getString(R.string.nfc_utec_installed))
+        .setPositiveButton(R.string.ok) { dialog, which ->
+          openAppSetting(UTEC)
+        }
+        .show()
+    }
+  }
+
+  private fun openAppSetting(pkgName: String) {
+    val intent = Intent()
+    intent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
+    intent.data = android.net.Uri.fromParts("package", pkgName, null)
+    startActivity(intent)
+  }
+
+  @SuppressLint("QueryPermissionsNeeded")
+  private fun checkAppInstalled(context: Context, pkg: String): Boolean {
+    val i = Intent()
+    val cn = ComponentName(
+      pkg,
+      "$pkg.LoginHomeActivity"
+    )
+    i.component = cn
+    val resolveActivity = context.packageManager.resolveActivity(i, 0)
+    return resolveActivity == null
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
