@@ -1,8 +1,6 @@
 package com.anviz.googlepaynfc
 
 import android.annotation.SuppressLint
-import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -104,7 +102,7 @@ class TestOpenDoorActivity : AppCompatActivity() {
         .show()
     }
 
-    if (checkAppInstalled(this, UTEC)) {
+    if (checkAppInstalled()) {
       AlertDialog.Builder(this)
         .setTitle(R.string.notice)
         .setMessage(getString(R.string.nfc_utec_installed))
@@ -123,15 +121,17 @@ class TestOpenDoorActivity : AppCompatActivity() {
   }
 
   @SuppressLint("QueryPermissionsNeeded")
-  private fun checkAppInstalled(context: Context, pkg: String): Boolean {
-    val i = Intent()
-    val cn = ComponentName(
-      pkg,
-      "$pkg.LoginHomeActivity"
-    )
-    i.component = cn
-    val resolveActivity = context.packageManager.resolveActivity(i, 0)
-    return resolveActivity == null
+  private fun checkAppInstalled(): Boolean {
+    // alexa app package name
+//    val alexaAppPackageName = "com.amazon.dee.app"
+    val pm = packageManager
+    val list = pm.getInstalledPackages(0)
+    for (packageInfo in list) {
+      if (packageInfo.packageName == UTEC){
+        return true
+      }
+    }
+    return false
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

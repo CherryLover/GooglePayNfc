@@ -8,6 +8,11 @@
         android:name="android.hardware.nfc"
         android:required="true" />
 
+    <queries>
+        <package android:name="com.utec.utec" />
+    </queries>
+
+
     <application
         android:name=".App"
         android:allowBackup="true"
